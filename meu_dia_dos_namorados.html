@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia dos Namorados, Meu Amor!</title>
+    <style>
+        /* Estilos globais */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f8f0e3; /* Bege claro */
+            color: #5e5e5e; /* Cinza escuro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Seção do Título com Imagem de Fundo */
+        #fundo-titulo {
+            width: 100%;
+            height: 400px; /* Altura da seção do título */
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        #fundo-titulo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra toda a área */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0; /* Coloca a imagem atrás do texto */
+        }
+
+        #fundo-titulo h1 {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 0;
+            padding: 20px;
+            background-color: rgba(220, 20, 60, 0.7); /* Vermelho arroxeado semi-transparente */
+            border-radius: 10px;
+            z-index: 1; /* Coloca o título acima da imagem */
+        }
+
+        /* Container Principal do Conteúdo (Tela Branca) */
+        #conteudo {
+            background-color: white; /* Fundo branco */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            padding: 40px;
+            margin-top: -80px; /* Sobrepõe a seção do título para um efeito visual */
+            margin-bottom: 40px;
+            max-width: 800px; /* Largura máxima para o conteúdo */
+            width: 90%; /* Ocupa 90% da largura em telas menores */
+            text-align: center;
+            position: relative;
+            z-index: 2; /* Garante que fique acima das outras seções */
+        }
+
+        /* Estilos das Poesias */
+        #poesias {
+            margin-bottom: 30px;
+        }
+
+        #poesias h2 {
+            color: #d6336c; /* Cor rosa mais forte para o título das poesias */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .poema {
+            font-style: italic;
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #777; /* Cor do texto das poesias */
+        }
+
+        /* Estilos da Contagem Regressiva */
+        #contagem-regressiva {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #ff1493; /* Rosa choque */
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee; /* Linha divisória sutil */
+        }
+
+        #timer {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        /* Estilos para dispositivos menores (responsividade) */
+        @media (max-width: 600px) {
+            #fundo-titulo {
+                height: 300px;
+            }
+            #fundo-titulo h1 {
+                font-size: 2.5em;
+                padding: 15px;
+            }
+            #conteudo {
+                margin-top: -60px;
+                padding: 30px;
+            }
+            #poesias h2 {
+                font-size: 1.8em;
+            }
+            .poema {
+                font-size: 1em;
+            }
+            #contagem-regressiva {
+                font-size: 1.4em;
+            }
+            #timer {
+                font-size: 1.2em;
+            }
+        }
+        /* Transição de Fade-in para a página inteira */
+body.fade-in {
+    opacity: 0;
+    animation: fadeInAnimation 1s ease-in forwards; /* 1 segundo de duração */
+}
+
+@keyframes fadeInAnimation {
+    from {
+        opacity: 0; /* Começa invisível */
+    }
+    to {
+        opacity: 1; /* Termina totalmente visível */
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="fundo-titulo">
+        <img src="imagem_romantica_exemplo.jpg" alt="Casal feliz">
+        <h1>Feliz Dia dos Namorados, Meu Amor!</h1>
+    </div>
+
+    <div id="conteudo">
+        <div id="poesias">
+            <h2>Para Você, Minha Inspiração</h2>
+            <p class="poema">
+                No jardim da vida, você é a flor mais rara,<br>
+                Cujo perfume a alma e o coração inunda.<br>
+                Um brilho nos olhos que a paixão declara,<br>
+                Em cada verso, nosso amor se aprofunda.
+            </p>
+            <p class="poema">
+                Teu toque é magia, teu beijo, um doce mel,<br>
+                Em teus braços, encontro meu lar e meu céu.<br>
+                Prometo amar-te em cada novo amanhecer,<br>
+                Meu eterno desejo é contigo viver.
+            </p>
+            <p class="poema">
+                Com você, o mundo ganha cor e canção,<br>
+                És a estrela que guia, a luz da minha paixão.<br>
+                Meu amor por ti é um oceano sem fim,<br>
+                Meu Dia dos Namorados é ter você pra mim.
+            </p>
+            </div>
+
+        <div id="contagem-regressiva">
+            Contagem Regressiva para o Dia dos Namorados:
+            <div id="timer"></div>
+        </div>
+    </div>
+
+    <script>
+        function atualizarContagem() {
+            // Define a data do próximo Dia dos Namorados (12 de Junho de 2025)
+            // Lembre-se: O Dia dos Namorados no Brasil é em 12 de Junho.
+            // A contagem regressiva estará para 2025, já que hoje é 11 de Junho de 2025.
+            const dataDiaDosNamorados = new Date('2025-06-12T00:00:00-03:00'); // Fuso horário de Brasília (-03:00)
+            const agora = new Date();
+            const diferenca = dataDiaDosNamorados.getTime() - agora.getTime();
+
+            const timerElement = document.getElementById('timer');
+
+            if (diferenca > 0) {
+                const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+                timerElement.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+            } else {
+                timerElement.innerText = 'Feliz Dia dos Namorados!';
+                // Se já passou, você pode adicionar uma mensagem diferente ou animação
+            }
+        }
+
+        // Atualiza a contagem a cada segundo
+        setInterval(atualizarContagem, 1000);
+
+        // Chama a função uma vez ao carregar a página para evitar atraso inicial
+        atualizarContagem();
+    </script>
+    <script>
+    // Adiciona a classe 'fade-in' ao <body> quando a página é carregada
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('fade-in');
+    });
+
+    // Função para atualizar a contagem regressiva (já existente)
+    function atualizarContagem() {
+        const dataDiaDosNamorados = new Date('2025-06-12T00:00:00-03:00'); // Ajuste para 2026
+        const agora = new Date();
+        const diferenca = dataDiaDosNamorados.getTime() - agora.getTime();
+
+        const timerElement = document.getElementById('timer');
+
+        if (diferenca > 0) {
+            const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+            timerElement.innerText = `${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos`;
+        } else {
+            timerElement.innerText = 'Feliz Dia dos Namorados!';
+        }
+    }
+
+    setInterval(atualizarContagem, 1000);
+    atualizarContagem(); // Chama uma vez para exibir imediatamente
+</script>
+</body>
+</html>
